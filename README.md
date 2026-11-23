@@ -52,6 +52,57 @@ As regiões se abrem em ordem. Há uma **trilha completa** (2º ao 7º ano) e um
 - **Versão em Godot em desenvolvimento**, com arte nova.
 - Os números das missões são escolhas de design e **ainda precisam passar por teste com estudantes** antes de valerem como instrumento de pesquisa.
 
+## Tecnologias
+
+O projeto tem duas versões do jogo e uma linha de produção de arte. O código fica no repositório separado; aqui está o que cada parte usa.
+
+### Protótipo no navegador
+
+| Parte | Tecnologia |
+|---|---|
+| Linguagens | JavaScript (módulos ES, sem framework de interface), HTML5 e CSS3 |
+| Motor do jogo | [Phaser 3](https://phaser.io/) (3.90) |
+| Empacotamento | [Vite](https://vite.dev/) 7, com um plugin próprio que copia a trilha sonora para a versão publicada |
+| Ambiente | [Node.js](https://nodejs.org/) e npm |
+| Hospedagem | [Vercel](https://vercel.com/), com funções sem servidor para a turma online |
+| Dados da turma online | Vercel Blob (`@vercel/blob`) |
+| Dados no computador | `localStorage` para os perfis e IndexedDB para o Modo Pesquisa, com exportação em CSV e JSON |
+| Som | Web Audio API: efeitos sonoros sintetizados no próprio navegador |
+| Fontes | Google Fonts, com as fontes do sistema quando não há internet |
+| Testes | `node --test` (testes das regras) e [Playwright](https://playwright.dev/) (testes no navegador e jogada completa automática) |
+
+### Versão em Godot (em desenvolvimento)
+
+| Parte | Tecnologia |
+|---|---|
+| Motor | [Godot Engine](https://godotengine.org/) 4.7 |
+| Linguagens | GDScript e a linguagem de shaders do Godot (vento, árvores, neblina e troca de paleta de cores) |
+| Renderização | GL Compatibility, para rodar no navegador (WebGL 2) |
+| Exportação | Web (WebAssembly), primeiro; Windows depois |
+| Recursos do motor | `CharacterBody2D`, `AnimationPlayer` e `AnimationTree`, navegação dos moradores, save em `user://` (IndexedDB no navegador) |
+| Fonte | Fredoka |
+
+### Produção de arte
+
+| Ferramenta | Uso |
+|---|---|
+| [LibreSprite](https://libresprite.github.io/) | pixel art à mão e acabamento dos personagens (arquivos `.ase`) |
+| [ImageMagick](https://imagemagick.org/) | conversão e montagem de imagens nos scripts de produção |
+| Scripts em Node.js | conversão das referências, montagem dos personagens em camadas, folhas de animação e exportação da arte para o Godot |
+| Playwright | roda os módulos da versão web para exportar o cenário para o Godot |
+| Python | apoio pontual (servidor local e um script de revisão) |
+| SpriteCook e SpriteKiln | geração de sprites e animações de personagens |
+| ChatGPT e Gemini | folhas de referência visual para a direção de arte |
+
+### Desenvolvimento e apoio
+
+| Ferramenta | Uso |
+|---|---|
+| Git e GitHub | controle de versão |
+| Visual Studio Code, com Live Server | edição e teste local da versão web |
+| Claude Code | apoio à programação, aos testes e à documentação |
+| Codex CLI | avaliação automática da direção de arte, revisada depois pela direção |
+
 ## Direitos
 
 © 2026 Ralf Mota. Todos os direitos reservados. Este repositório é público para divulgação do projeto. O texto, a história, os personagens e o desenho das missões não podem ser reproduzidos nem adaptados sem autorização do autor. Veja [`LICENSE`](LICENSE).
