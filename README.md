@@ -75,12 +75,17 @@ O projeto tem duas versões do jogo e uma linha de produção de arte. O código
 
 | Parte | Tecnologia |
 |---|---|
-| Motor | [Godot Engine](https://godotengine.org/) 4.7 |
+| Motor | [Godot Engine](https://godotengine.org/) 4.7 (4.7.2) |
 | Linguagens | GDScript e a linguagem de shaders do Godot (vento, árvores, neblina e troca de paleta de cores) |
 | Renderização | GL Compatibility, para rodar no navegador (WebGL 2) |
 | Exportação | Web (WebAssembly), primeiro; Windows depois |
 | Recursos do motor | `CharacterBody2D`, `AnimationPlayer` e `AnimationTree`, navegação dos moradores, save em `user://` (IndexedDB no navegador) |
+| Turma online | `HTTPRequest`, nas mesmas rotas da Vercel da versão web (no navegador, usa o endereço do próprio site) |
+| Senha do professor | PBKDF2 com a classe `Crypto` do Godot; a senha nunca é gravada |
+| Som | os efeitos da versão web, gravados em WAV a partir das mesmas receitas, com legendas escritas |
+| No navegador | `JavaScriptBridge`, para baixar os arquivos CSV e JSON do Modo Pesquisa e do professor |
 | Fonte | Fredoka |
+| Testes | roteiros em GDScript que jogam as missões com a janela aberta e comparam os eventos de pesquisa com os da versão web; servidor simulado em Node.js para a turma online |
 
 ### Produção de arte
 
